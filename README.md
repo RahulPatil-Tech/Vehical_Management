@@ -1,4 +1,4 @@
-# 🚗✨ Vehicle Management System
+# 🚗✨ **Vehicle Management System**
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
@@ -7,52 +7,60 @@
 
 ---
 
-## 📸 Live Preview
+## 🎥 **Live Preview**
 
-<video src="https://github.com/RahulPatil-Tech/Vehical_Management/releases/download/v1.0/Demo.-.Made.with.Clipchamp.mp4" width="640" controls></video>
+> ✅ **Check out the project in action!**
+
+https://github.com/user-attachments/assets/77455508-00ff-49a8-b54c-95f447b48f18
 
 
----
-
-## 📌 Overview
-
-**Vehicle Management System** is a role-based fleet management web app built using **ASP.NET Core MVC**, **C#**, and **Entity Framework Core**.  
-It enables admins to manage vehicles and maintenance schedules, while users can view details and dashboards tailored to their role.
 
 ---
 
-## 🎯 Features
+## 📌 **Overview**
 
-✅ Role-based **Registration & Login** (Admin, User)  
-✅ Separate **Dashboards** for Admin and User  
-✅ **CRUD operations** for Vehicles & Maintenance  
-✅ RESTful **Web API** with JSON responses  
-✅ Consumes API using **JavaScript/AJAX/HttpClient**  
-✅ **Session Management**, TempData/ViewData  
-✅ Secure authentication using **ASP.NET Identity**  
-✅ Built with **Core C# Concepts**: Classes, Interfaces, Inheritance, LINQ, Exception Handling
+**Vehicle Management System** is a **role-based fleet management web application** built with **ASP.NET Core MVC**, **C#**, and **Entity Framework Core**.  
+It enables **Admins** to manage vehicles and maintenance tasks, while **Users** can view vehicle details and access dashboards tailored to their roles.
 
 ---
 
-## 👥 Team Members
+## 🎯 **Key Features**
 
-| Name | Role |
-|------|------|
-| **Rahul Patil** | Backend-End Developer|
-| **Shruti Patil** | Front Developer |
+- ✅ **Role-based Registration & Login** (Admin & User)
+- ✅ **Dedicated Dashboards** for each role
+- ✅ **CRUD Operations** for Vehicles & Maintenance
+- ✅ RESTful **Web API** with JSON responses
+- ✅ API consumption using **JavaScript**, **AJAX**, and **HttpClient**
+- ✅ **Session Management** with TempData & ViewData
+- ✅ Secure Authentication with **ASP.NET Identity**
+- ✅ Built using **Core C# Concepts**:  
+  Classes, Interfaces, Inheritance, LINQ, Exception Handling
+
+---
+
+## 👥 **Team Members**
+
+| 👤 **Name** | 🛠️ **Role** |
+|----------------|-----------------|
+| **Rahul Patil** | Backend Developer |
+| **Shruti Patil** | Frontend Developer |
 
 ---
 
-## ⚙️ Tech Stack
+## ⚙️ **Tech Stack**
 
-- ![C#](https://img.shields.io/badge/C%23-239120?logo=c-sharp&logoColor=white&style=flat)
-- ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?logo=dotnet&logoColor=white)
-- ![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework%20Core-green)
-- ![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white)
-- ![Visual Studio](https://img.shields.io/badge/IDE-Visual%20Studio-5C2D91?logo=visual-studio&logoColor=white)
-- ![Postman](https://img.shields.io/badge/API%20Testing-Postman-orange?logo=postman)
+| Technology | Badge |
+|------------|-------|
+| **C#** | ![C#](https://img.shields.io/badge/C%23-239120?logo=c-sharp&logoColor=white&style=flat) |
+| **ASP.NET Core** | ![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-512BD4?logo=dotnet&logoColor=white) |
+| **Entity Framework Core** | ![Entity Framework Core](https://img.shields.io/badge/Entity%20Framework%20Core-green) |
+| **SQL Server** | ![SQL Server](https://img.shields.io/badge/SQL%20Server-CC2927?logo=microsoft-sql-server&logoColor=white) |
+| **Visual Studio** | ![Visual Studio](https://img.shields.io/badge/IDE-Visual%20Studio-5C2D91?logo=visual-studio&logoColor=white) |
+| **Postman** | ![Postman](https://img.shields.io/badge/API%20Testing-Postman-orange?logo=postman) |
 
 ---
+
+
 
 ## 🗂️ Project Structure
 
