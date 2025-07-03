@@ -9,7 +9,7 @@
 
 ## 📸 Live Preview
 
-
+<video src="https://github.com/RahulPatil-Tech/Vehical_Management/releases/download/v1.0/Demo.-.Made.with.Clipchamp.mp4" width="640" controls></video>
 
 
 ---
