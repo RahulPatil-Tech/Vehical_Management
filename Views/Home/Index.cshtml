@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="d-flex flex-column align-items-center justify-content-center text-center p-5 rounded-lg shadow-lg bg-white bg-opacity-10" style="min-height: 70vh;">
+    <h1 class="display-3 mb-4 fw-bold text-white">Welcome to the Vehicle Management System</h1>
+    <p class="lead mb-5 text-light opacity-75">Manage your fleet effortlessly with our custom ASP.NET Core application. Streamline operations, track maintenance, and keep your vehicles running smoothly.</p>
+
+    <div class="d-flex gap-4 flex-wrap justify-content-center">
+        <a asp-controller="Account" asp-action="Login" class="btn btn-custom btn-primary-custom">Login</a>
+        <a asp-controller="Account" asp-action="Register" class="btn btn-custom btn-success-custom">Register</a>
+        <a asp-controller="Vehicle" asp-action="Index" class="btn btn-custom btn-info-custom">View Vehicles</a>
+        <a asp-controller="Admin" asp-action="Index" class="btn btn-custom btn-warning-custom">Admin Dashboard</a>
+    </div>
+</div>
+
+
+<style>
+    body {
+        background: linear-gradient(135deg, #4a90e2, #145ea8);
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    a.btn {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+        a.btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+        }
+</style>

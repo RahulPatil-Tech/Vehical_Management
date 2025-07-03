@@ -1,0 +1,168 @@
+﻿@model VehicleManagement.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Register Account";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold text-white text-shadow-sm">
+            <i class="bi bi-person-plus-fill me-3"></i> Create Your Account
+        </h2>
+        <p class="lead text-light opacity-75">Join our Vehicle Management System today!</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 p-4 animate-fade-in">
+                <div class="card-body">
+                    <form asp-action="Register" method="post">
+                        <div class="mb-3">
+                            <label asp-for="UserName" class="form-label fw-semibold text-dark"></label>
+                            <input asp-for="UserName" class="form-control form-control-lg rounded-pill-input" placeholder="Choose a username" />
+                            <span asp-validation-for="UserName" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label fw-semibold text-dark"></label>
+                            <input asp-for="Password" type="password" class="form-control form-control-lg rounded-pill-input" placeholder="Enter your password" />
+                            <span asp-validation-for="Password" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label fw-semibold text-dark"></label>
+                            <input asp-for="ConfirmPassword" type="password" class="form-control form-control-lg rounded-pill-input" placeholder="Confirm your password" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="Role" class="form-label fw-semibold text-dark">Select Role</label>
+                            <select asp-for="Role" class="form-select form-select-lg rounded-pill-input">
+                                <option value="">-- Select Role --</option>
+                                <option value="User">User</option>
+                                <option value="Admin">Admin</option>
+                            </select>
+                            <span asp-validation-for="Role" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-custom btn-primary-custom">
+                                <i class="bi bi-person-check-fill me-2"></i> Register
+                            </button>
+                            <a asp-action="Login" class="btn btn-custom btn-outline-secondary-custom mt-3">
+                                <i class="bi bi-box-arrow-in-right me-2"></i> Already have an account? Login
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <!-- Bootstrap Icons (if not already included in _Layout) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}
+
+@section Styles {
+    <style>
+        /* Reusing global styles from _Layout and other views */
+        .text-shadow-sm {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white card background */
+        }
+
+        .rounded-4 {
+            border-radius: .75rem !important;
+        }
+
+        /* Custom button styles (consistent with _Layout.cshtml) */
+        .btn-custom {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+            .btn-custom:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            }
+
+        .btn-primary-custom {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+        }
+
+            .btn-primary-custom:hover {
+                background: linear-gradient(45deg, #0056b3, #007bff);
+            }
+
+        .btn-outline-secondary-custom {
+            border: 2px solid #6c757d; /* Gray border */
+            color: #6c757d; /* Gray text */
+            background-color: transparent;
+        }
+
+            .btn-outline-secondary-custom:hover {
+                background-color: #6c757d; /* Solid gray background on hover */
+                color: white;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+        /* Form control styling */
+        .form-control-lg {
+            padding: .75rem 1.25rem;
+            font-size: 1.1rem;
+            border-radius: .5rem; /* Slightly rounded corners for inputs */
+            border: 1px solid #ced4da;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+            .form-control-lg:focus {
+                border-color: #80bdff;
+                box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+                outline: 0;
+            }
+
+        .rounded-pill-input {
+            border-radius: 50px !important; /* Make inputs pill-shaped */
+            padding-left: 1.5rem; /* Adjust padding for pill shape */
+            padding-right: 1.5rem;
+        }
+
+        .form-label {
+            margin-bottom: .5rem;
+            color: #343a40; /* Darker label text */
+        }
+
+        /* Animation for form */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @@keyframes fadeIn { /* Fixed: Escaped with @@keyframes */
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+}

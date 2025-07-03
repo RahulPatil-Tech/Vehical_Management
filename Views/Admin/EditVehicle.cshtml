@@ -1,0 +1,145 @@
+﻿@model VehicleManagement.Models.Vehicle
+
+@{
+    ViewData["Title"] = $"Admin - Edit Vehicle: {Model.Make} {Model.Model}";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold text-white text-shadow-sm">
+            <i class="bi bi-pencil-square me-3"></i> Admin: Edit Vehicle Details
+        </h2>
+        <p class="lead text-light opacity-75">Modify vehicle information and assigned owner.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0 rounded-4 p-4 animate-fade-in">
+                <div class="card-body">
+                    <form asp-controller="Admin" asp-action="EditVehicle" method="post">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="RegistrationNumber" class="form-label fw-semibold text-dark"></label>
+                            <input asp-for="RegistrationNumber" class="form-control form-control-lg rounded-pill-input" />
+                            <span asp-validation-for="RegistrationNumber" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Make" class="form-label fw-semibold text-dark"></label>
+                            <input asp-for="Make" class="form-control form-control-lg rounded-pill-input" />
+                            <span asp-validation-for="Make" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Model" class="form-label fw-semibold text-dark"></label>
+                            <input asp-for="Model" class="form-control form-control-lg rounded-pill-input" />
+                            <span asp-validation-for="Model" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Type" class="form-label fw-semibold text-dark"></label>
+                            <input asp-for="Type" class="form-control form-control-lg rounded-pill-input" />
+                            <span asp-validation-for="Type" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Status" class="form-label fw-semibold text-dark"></label>
+                            <select asp-for="Status" class="form-select form-select-lg rounded-pill-input">
+                                <option value="Active">Active</option>
+                                <option value="Maintenance">Maintenance</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="LastMaintenanceDate" class="form-label fw-semibold text-dark"></label>
+                            <input asp-for="LastMaintenanceDate" type="date" class="form-control form-control-lg rounded-pill-input" />
+                            <span asp-validation-for="LastMaintenanceDate" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <label asp-for="UserId" class="form-label fw-semibold text-dark">Assign to User</label>
+                            <select asp-for="UserId" class="form-select form-select-lg rounded-pill-input">
+                                @foreach (var user in ViewBag.Users)
+                                {
+                                    <option value="@user.Id">@user.UserName</option>
+                                }
+                            </select>
+                            <span asp-validation-for="UserId" class="text-danger mt-1 d-block"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-custom btn-primary-custom">
+                                <i class="bi bi-save-fill me-2"></i> Save Changes
+                            </button>
+                            <a asp-controller="Admin" asp-action="Index" class="btn btn-custom btn-outline-secondary-custom mt-3">
+                                <i class="bi bi-arrow-left-circle-fill me-2"></i> Back to Admin Dashboard
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <!-- Bootstrap Icons (if not already included in _Layout) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}
+
+@section Styles {
+    <style>
+        /* Reusing global styles */
+        .text-shadow-sm {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .rounded-4 {
+            border-radius: .75rem !important;
+        }
+
+        .btn-custom { /* ... styles ... */
+        }
+
+        .btn-primary-custom { /* ... styles ... */
+        }
+
+        .btn-outline-secondary-custom { /* ... styles ... */
+        }
+
+        .form-control-lg { /* ... styles ... */
+        }
+
+        .rounded-pill-input { /* ... styles ... */
+        }
+
+        .form-label { /* ... styles ... */
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+}

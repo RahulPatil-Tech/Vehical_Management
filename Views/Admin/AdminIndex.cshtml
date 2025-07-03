@@ -1,0 +1,171 @@
+﻿@model IEnumerable<VehicleManagement.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Admin Dashboard - All Vehicles";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-5">
+        <div>
+            <h2 class="display-4 fw-bold text-white text-shadow-sm mb-0">
+                <i class="bi bi-gear-fill me-3"></i> Admin Dashboard: All Vehicles
+            </h2>
+            <p class="lead text-light opacity-75">Manage all registered vehicles and their assignments.</p>
+        </div>
+        <div>
+            <form asp-controller="Account" asp-action="Logout" method="post">
+                <button type="submit" class="btn btn-outline-light btn-custom">
+                    <i class="bi bi-box-arrow-right me-2"></i> Logout
+                </button>
+            </form>
+        </div>
+    </div>
+
+    @* Display Success/Error Messages *@
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="mb-4">
+        <a asp-controller="Admin" asp-action="AddVehicle" class="btn btn-custom btn-primary-custom">
+            <i class="bi bi-plus-circle-fill me-2"></i> Add New Vehicle
+        </a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        <div class="card shadow-lg border-0 rounded-4 p-4 animate-fade-in">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Registration Number</th>
+                                <th scope="col">Make</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Type</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Last Maintenance</th>
+                                <th scope="col">Assigned User</th>
+                                <th scope="col" class="text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var vehicle in Model)
+                            {
+                                <tr>
+                                    <td>@vehicle.RegistrationNumber</td>
+                                    <td>@vehicle.Make</td>
+                                    <td>@vehicle.Model</td>
+                                    <td>@vehicle.Type</td>
+                                    <td>
+                                        <span class="badge @(vehicle.Status == "Active" ? "bg-success" : vehicle.Status == "Maintenance" ? "bg-warning text-dark" : "bg-danger")">
+                                            @vehicle.Status
+                                        </span>
+                                    </td>
+                                    <td>@(vehicle.LastMaintenanceDate?.ToString("yyyy-MM-dd") ?? "N/A")</td>
+                                    <td>@vehicle.User?.UserName</td>
+                                    <td class="text-center">
+                                        <div class="btn-group" role="group">
+                                            <a asp-controller="Admin" asp-action="EditVehicle" asp-route-id="@vehicle.Id" class="btn btn-sm btn-outline-info" title="Edit">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <a asp-controller="Admin" asp-action="DeleteVehicle" asp-route-id="@vehicle.Id" class="btn btn-sm btn-outline-danger" title="Delete">
+                                                <i class="bi bi-trash"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info text-center shadow-sm animate-fade-in" role="alert">
+            <h4 class="alert-heading"><i class="bi bi-info-circle me-2"></i> No Vehicles Found!</h4>
+            <p>There are no vehicles registered in the system yet. Click "Add New Vehicle" to get started.</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}
+
+@section Styles {
+    <style>
+        body {
+            background: linear-gradient(to right, #4CAF50, #8BC34A);
+        }
+
+        .text-shadow-sm {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .rounded-4 {
+            border-radius: .75rem !important;
+        }
+
+        .btn-custom {
+            padding: .6rem 1.2rem;
+            font-size: 1rem;
+            border-radius: .5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+        }
+
+            .btn-primary-custom:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+        .table thead th {
+            font-weight: 600;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+}

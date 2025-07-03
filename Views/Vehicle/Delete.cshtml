@@ -1,0 +1,166 @@
+﻿@model VehicleManagement.Models.Vehicle
+
+@{
+    ViewData["Title"] = $"Delete Vehicle: {Model.Make} {Model.Model}";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold text-white text-shadow-sm">
+            <i class="bi bi-trash-fill me-3"></i> Delete Vehicle
+        </h2>
+        <p class="lead text-light opacity-75">
+            Are you sure you want to delete this vehicle record? This action cannot be undone.
+        </p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-lg border-0 rounded-4 p-4 animate-fade-in">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4 text-dark">Vehicle Details</h4>
+                    <dl class="row detail-list">
+                        <dt class="col-sm-4 text-dark">Registration Number</dt>
+                        <dd class="col-sm-8 text-muted">@Model.RegistrationNumber</dd>
+
+                        <dt class="col-sm-4 text-dark">Make</dt>
+                        <dd class="col-sm-8 text-muted">@Model.Make</dd>
+
+                        <dt class="col-sm-4 text-dark">Model</dt>
+                        <dd class="col-sm-8 text-muted">@Model.Model</dd>
+
+                        <dt class="col-sm-4 text-dark">Type</dt>
+                        <dd class="col-sm-8 text-muted">@Model.Type</dd>
+
+                        <dt class="col-sm-4 text-dark">Status</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge rounded-pill px-3 py-2 @(Model.Status == "Active" ? "bg-success" : (Model.Status == "Maintenance" ? "bg-warning text-dark" : "bg-danger"))">
+                                @Model.Status
+                            </span>
+                        </dd>
+
+                        <dt class="col-sm-4 text-dark">Last Maintenance Date</dt>
+                        <dd class="col-sm-8 text-muted">@(Model.LastMaintenanceDate?.ToShortDateString() ?? "N/A")</dd>
+                    </dl>
+
+                    <hr class="my-4" />
+
+                    <!-- CORRECTED LINE: asp-action is now "Delete" -->
+                    <form asp-action="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-custom btn-danger-custom">
+                                <i class="bi bi-trash me-2"></i> Confirm Delete
+                            </button>
+                            <a asp-action="Index" class="btn btn-custom btn-outline-secondary-custom mt-3">
+                                <i class="bi bi-x-circle-fill me-2"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Bootstrap Icons (if not already included in _Layout) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}
+
+@section Styles {
+    <style>
+        /* Reusing global styles from _Layout and other views */
+        .text-shadow-sm {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white card background */
+        }
+
+        .rounded-4 {
+            border-radius: .75rem !important;
+        }
+
+        /* Custom button styles (consistent with _Layout.cshtml) */
+        .btn-custom {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+            .btn-custom:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            }
+
+        .btn-danger-custom {
+            background: linear-gradient(45deg, #dc3545, #b02a37);
+            color: white;
+        }
+
+            .btn-danger-custom:hover {
+                background: linear-gradient(45deg, #b02a37, #dc3545);
+            }
+
+        .btn-outline-secondary-custom {
+            border: 2px solid #6c757d; /* Gray border */
+            color: #6c757d; /* Gray text */
+            background-color: transparent;
+        }
+
+            .btn-outline-secondary-custom:hover {
+                background-color: #6c757d; /* Solid gray background on hover */
+                color: white;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+        /* Detail list styling */
+        .detail-list dt {
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-list dd {
+            margin-bottom: 0.5rem;
+            color: #6c757d;
+        }
+
+        /* Status badge specific colors */
+        .badge.bg-success {
+            background-color: #28a745 !important;
+        }
+
+        .badge.bg-warning {
+            background-color: #ffc107 !important;
+        }
+
+        .badge.bg-danger {
+            background-color: #dc3545 !important;
+        }
+
+        /* Animation for form */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @@keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+}

@@ -1,0 +1,224 @@
+﻿@model VehicleManagement.Models.Vehicle
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = $"Vehicle Details: {Model.Make} {Model.Model}";
+    // Helper to check if the current user is an Admin
+    bool isAdmin = HttpContextAccessor.HttpContext.Session.GetString("UserRole") == "Admin";
+}
+
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h2 class="display-4 fw-bold text-white text-shadow-sm">
+            <i class="bi bi-info-circle-fill me-3"></i> Vehicle Details
+        </h2>
+        <p class="lead text-light opacity-75">
+            Detailed information about <span class="fw-bold">@Model.Make @Model.Model</span>.
+        </p>
+    </div>
+
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show text-center custom-alert-success mb-4" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show text-center custom-alert-danger mb-4" role="alert">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> @TempData["ErrorMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+            <div class="card shadow-lg border-0 rounded-4 p-4 animate-fade-in">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-4 text-dark">Vehicle Overview</h4>
+                    <dl class="row detail-list">
+                        <dt class="col-sm-4 text-dark">Registration Number</dt>
+                        <dd class="col-sm-8 text-muted">@Model.RegistrationNumber</dd>
+
+                        <dt class="col-sm-4 text-dark">Make</dt>
+                        <dd class="col-sm-8 text-muted">@Model.Make</dd>
+
+                        <dt class="col-sm-4 text-dark">Model</dt>
+                        <dd class="col-sm-8 text-muted">@Model.Model</dd>
+
+                        <dt class="col-sm-4 text-dark">Type</dt>
+                        <dd class="col-sm-8 text-muted">@Model.Type</dd>
+
+                        <dt class="col-sm-4 text-dark">Status</dt>
+                        <dd class="col-sm-8">
+                            <span class="badge rounded-pill px-3 py-2 @(Model.Status == "Active" ? "bg-success" : (Model.Status == "Maintenance" ? "bg-warning text-dark" : "bg-danger"))">
+                                @Model.Status
+                            </span>
+                        </dd>
+
+                        <dt class="col-sm-4 text-dark">Last Maintenance Date</dt>
+                        <dd class="col-sm-8 text-muted">@(Model.LastMaintenanceDate?.ToShortDateString() ?? "N/A")</dd>
+                    </dl>
+
+                    <hr class="my-4" />
+
+                    <div class="d-flex justify-content-center gap-3">
+                        @if (isAdmin)
+                        {
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-custom btn-primary-custom">
+                                <i class="bi bi-pencil-fill me-2"></i> Edit
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-custom btn-danger-custom">
+                                <i class="bi bi-trash-fill me-2"></i> Delete
+                            </a>
+                        }
+                        <a asp-action="Index" class="btn btn-custom btn-outline-secondary-custom">
+                            <i class="bi bi-arrow-left-circle-fill me-2"></i> Back to List
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Bootstrap Icons (if not already included in _Layout) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+}
+
+@section Styles {
+    <style>
+        /* Reusing global styles from _Layout and other views */
+        .text-shadow-sm {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-alert-success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+            border-radius: .5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+
+            .custom-alert-success .btn-close {
+                color: #155724;
+            }
+
+        /* Custom alert for errors (copied from Login/Register) */
+        .custom-alert-danger {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+            border-radius: .5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-weight: 500;
+        }
+
+            .custom-alert-danger .btn-close {
+                color: #721c24;
+            }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white card background */
+        }
+
+        .rounded-4 {
+            border-radius: .75rem !important;
+        }
+
+        /* Custom button styles (consistent with _Layout.cshtml) */
+        .btn-custom {
+            border-radius: 50px;
+            padding: 12px 30px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+            .btn-custom:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            }
+
+        .btn-primary-custom {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+        }
+
+            .btn-primary-custom:hover {
+                background: linear-gradient(45deg, #0056b3, #007bff);
+            }
+
+        .btn-danger-custom {
+            background: linear-gradient(45deg, #dc3545, #b02a37);
+            color: white;
+        }
+
+            .btn-danger-custom:hover {
+                background: linear-gradient(45deg, #b02a37, #dc3545);
+            }
+
+        .btn-outline-secondary-custom {
+            border: 2px solid #6c757d; /* Gray border */
+            color: #6c757d; /* Gray text */
+            background-color: transparent;
+        }
+
+            .btn-outline-secondary-custom:hover {
+                background-color: #6c757d; /* Solid gray background on hover */
+                color: white;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+        /* Detail list styling */
+        .detail-list dt {
+            font-weight: 600;
+            color: #343a40;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-list dd {
+            margin-bottom: 0.5rem;
+            color: #6c757d;
+        }
+
+        /* Status badge specific colors */
+        .badge.bg-success {
+            background-color: #28a745 !important;
+        }
+
+        .badge.bg-warning {
+            background-color: #ffc107 !important;
+        }
+
+        .badge.bg-danger {
+            background-color: #dc3545 !important;
+        }
+
+        /* Animation for form */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @@keyframes fadeIn { /* Fixed: Escaped with @@keyframes */
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+}

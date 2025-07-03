@@ -1,0 +1,52 @@
+﻿@model IEnumerable<VehicleManagement.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Your Vehicles";
+}
+
+<h2>Your Registered Vehicles</h2>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">+ Add New Vehicle</a>
+</p>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        You do not have any vehicles yet.
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Registration Number</th>
+                <th>Make</th>
+                <th>Model</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Last Maintenance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td>@v.RegistrationNumber</td>
+                    <td>@v.Make</td>
+                    <td>@v.Model</td>
+                    <td>@v.Type</td>
+                    <td>@v.Status</td>
+                    <td>@(v.LastMaintenanceDate?.ToShortDateString() ?? "-")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@v.Id">Details</a> |
+                        <a asp-action="Edit" asp-route-id="@v.Id">Edit</a> |
+                        <a asp-action="Delete" asp-route-id="@v.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
