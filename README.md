@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Build](https://img.shields.io/badge/build-passing-brightgreen)
-![Platform](https://img.shields.io/badge/platform-.NET%20Core%207.0-blueviolet)
+![Platform](https://img.shields.io/badge/platform-.NET%20Core%208.0-blueviolet)
 ![Status](https://img.shields.io/badge/status-active-success)
 
 ---
