@@ -158,35 +158,43 @@ dotnet run
 
 ---
 
-## 🧩 C# Concepts Implemented
+## 🧩 **C# Concepts Implemented**
 
-- ✅ Classes & Objects (`User`, `Vehicle`)
-- ✅ Inheritance / Interfaces / Abstraction
-- ✅ Exception Handling (try-catch)
-- ✅ Collections, Generics, LINQ Queries
-- ✅ ASP.NET Core Identity for Auth
-
----
-
-## 📸 Screenshots
-
-Add screenshots or replace the animation above with your real screen recording!
+- ✅ **Classes & Objects** (`User`, `Vehicle`)
+- ✅ **Inheritance**, **Interfaces**, **Abstraction**
+- ✅ **Exception Handling** (`try-catch`)
+- ✅ **Collections**, **Generics**, **LINQ Queries**
+- ✅ **ASP.NET Core Identity** for Secure Auth
 
 ---
 
-## 📝 License
+## 📸 **Screenshots**
 
-This project is for educational purposes only.
-
----
-
-## 💙 Special Thanks
-
-- Microsoft Docs  
-- ASP.NET Core Community  
-- Visual Studio Code Samples
+| ![](https://github.com/user-attachments/assets/9c914311-4473-498d-94ea-1d1445306269) | ![](https://github.com/user-attachments/assets/4bf2c439-459e-48c3-b466-75bc64973642) |
+|:--:|:--:|
+| ![](https://github.com/user-attachments/assets/a5ff7680-b070-4c12-9e93-7a87becc17c1) | ![](https://github.com/user-attachments/assets/c9ee51af-4de9-4d63-812f-5bc9cbb7655d) |
+| ![](https://github.com/user-attachments/assets/7bb48747-7f86-40a3-b4e5-01eff005d99d) | ![](https://github.com/user-attachments/assets/21504f54-9842-4edf-ac23-649558513303) |
+| ![](https://github.com/user-attachments/assets/7da51b29-81be-4a41-92a5-416e6ceb2060) | ![](https://github.com/user-attachments/assets/7b990763-1c42-423b-a2ee-87aaace8f121) |
+| ![](https://github.com/user-attachments/assets/1630f5aa-3bf7-4106-bf7d-952bf41f7d33) | |
 
 ---
 
-🚀 **Happy Coding!**
+## 📄 **License**
+
+This project is licensed under the **MIT License** —  
+> **🔒 For educational purposes only.**
+
+---
+
+## 💙 **Special Thanks**
+
+- 🏆 **Microsoft Docs**
+- 🧩 **ASP.NET Core Community**
+- 🛠️ **Visual Studio Code Samples**
+
+---
+
+## 🚀 **Happy Coding!**
+
+> ⭐ If you like this project, don’t forget to **star ⭐ the repo** — it motivates us to build more!  
 
